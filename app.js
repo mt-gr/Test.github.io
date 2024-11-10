@@ -19,8 +19,9 @@ function getAccessToken() {
             return acc;
         }, {});
         accessToken = hash.access_token;
-        window.history.pushState('', document.title, window.location.pathname);
+        console.log("Access Token: " + accessToken);
         sessionStorage.setItem('accessToken', accessToken);
+        window.history.pushState('', document.title, window.location.pathname);
     }
 }
 
