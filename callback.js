@@ -4,7 +4,6 @@
 document.getElementById('search-button').addEventListener('click', searchSongs);
 document.getElementById('create-playlist-button').addEventListener('click', createPlaylist);
 
-console.log("access token before creation: " + accessToken);
 let accessToken = sessionStorage.getItem('accessToken');
 console.log("access token after creation: " + accessToken);
 
