@@ -12,7 +12,7 @@ async function searchSongs() {
     if (!query) return alert('Please enter a song or artist.');
 
     if (!accessToken) {
-        authorizeSpotify();
+        console.log("No access Token found");
         return;
     }
 
