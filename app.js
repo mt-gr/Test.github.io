@@ -2,12 +2,9 @@ const clientId = 'efe131fac3c74d3cac20ae0886b01ff9';
 const redirectUri = 'https://carbonate1.github.io/Test.github.io/callback';
 let accessToken = '';
 
-if (window.location.pathname === '/callback.html') {
-    document.getElementById('search-button').addEventListener('click', searchSongs);
-    document.getElementById('create-playlist-button').addEventListener('click', createPlaylist);
-} else {
-    document.getElementById('log-in-button').addEventListener('click', authorizeSpotify);
-}
+document.getElementById('create-playlist-button').addEventListener('click', createPlaylist);
+document.getElementById('log-in-button').addEventListener('click', authorizeSpotify);
+
 
 function authorizeSpotify() {
     const authEndpoint = 'https://accounts.spotify.com/authorize';
