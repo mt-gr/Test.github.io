@@ -8,12 +8,11 @@ let accessToken = sessionStorage.getItem('accessToken');
 
 
 async function searchSongs() {
-    console.log("Search Songs has been pressed");
     const query = document.getElementById('song-input').value;
     if (!query) return alert('Please enter a song or artist.');
 
     if (!accessToken) {
-        console.log("No access Token found");
+        console.log(accessToken);
         return;
     }
 
