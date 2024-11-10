@@ -20,6 +20,7 @@ function getAccessToken() {
         }, {});
         accessToken = hash.access_token;
         window.history.pushState('', document.title, window.location.pathname);
+        sessionStorage.setItem('accessToken', accessToken);
     }
 }
 
