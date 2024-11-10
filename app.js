@@ -1,5 +1,5 @@
-const clientId = 'YOUR_SPOTIFY_CLIENT_ID';
-const redirectUri = 'YOUR_REDIRECT_URI';  // E.g., 'http://localhost:5500'
+const clientId = 'efe131fac3c74d3cac20ae0886b01ff9';
+const redirectUri = 'YOUR_REDIRECT_URI'; // TODO: Change me
 let accessToken = '';
 
 document.getElementById('search-button').addEventListener('click', searchSongs);
