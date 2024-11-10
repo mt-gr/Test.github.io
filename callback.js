@@ -4,15 +4,16 @@
 document.getElementById('search-button').addEventListener('click', searchSongs);
 document.getElementById('create-playlist-button').addEventListener('click', createPlaylist);
 
+console.log("access token before creation: " + accessToken);
 let accessToken = sessionStorage.getItem('accessToken');
-
+console.log("access token after creation: " + accessToken);
 
 async function searchSongs() {
     const query = document.getElementById('song-input').value;
     if (!query) return alert('Please enter a song or artist.');
 
     if (!accessToken) {
-        console.log("access token: " + accessToken);
+        console.log("access token when not found: " + accessToken);
         return;
     }
 
