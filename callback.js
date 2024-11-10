@@ -1,3 +1,6 @@
+// TODO: Figure out how to pass information between the previous js file and this or put all of it into one file
+//       Figure out how to work the console and where the input actually goes for debugging
+
 document.getElementById('search-button').addEventListener('click', searchSongs);
 document.getElementById('create-playlist-button').addEventListener('click', createPlaylist);
 
