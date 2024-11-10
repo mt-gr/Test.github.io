@@ -2,6 +2,7 @@ const clientId = 'efe131fac3c74d3cac20ae0886b01ff9';
 const redirectUri = 'https://carbonate1.github.io/Test.github.io/callback';
 let accessToken = '';
 
+document.getElementById('log-in-button').addEventListener('click', authorizeSpotify);
 document.getElementById('search-button').addEventListener('click', searchSongs);
 document.getElementById('create-playlist-button').addEventListener('click', createPlaylist);
 
