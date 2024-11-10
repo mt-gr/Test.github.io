@@ -12,7 +12,7 @@ async function searchSongs() {
     if (!query) return alert('Please enter a song or artist.');
 
     if (!accessToken) {
-        console.log(accessToken);
+        console.log("access token: " + accessToken);
         return;
     }
 
