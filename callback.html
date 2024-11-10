@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Callback</title>
+</head>
+<body>
+    <script>
+        // Handle the access token extraction from the URL
+        const hash = window.location.hash.substring(1).split('&').reduce((acc, item) => {
+            const parts = item.split('=');
+            acc[parts[0]] = decodeURIComponent(parts[1]);
+            return acc;
+        }, {});
+
+        if (hash.access_token) {
+            console.log('Access token:', hash.access_token);
+            // Store the token or redirect to your main page with the token
+        } else {
+            console.error('No access token found');
+        }
+    </script>
+    <h1>Authorization successful. You can now return to the app.</h1>
+</body>
+</html>
