@@ -4,6 +4,8 @@
 document.getElementById('search-button').addEventListener('click', searchSongs);
 document.getElementById('create-playlist-button').addEventListener('click', createPlaylist);
 
+let accessToken = sessionStorage.getItem('accessToken');
+
 
 async function searchSongs() {
     const query = document.getElementById('song-input').value;
