@@ -3,7 +3,7 @@ document.getElementById('create-playlist-button').addEventListener('click', crea
 document.getElementById('playback-settings-button').addEventListener('click', () => {
     window.location.href = `playback.html?access_token=${accessToken}`;
 });
-
+// Random change
 let accessToken = '';
 let query = '';
 
