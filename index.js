@@ -1,18 +1,19 @@
 const clientId = 'efe131fac3c74d3cac20ae0886b01ff9';
-const redirectUri = 'https://carbonate1.github.io/Test.github.io/callback';
+const redirectUri = 'https://carbonate1.github.io/Test.github.io/createplaylist.html';
+// const redirectUri = 'http://127.0.0.1:5500/Code/createplaylist.html' // TODO: Change me back both here and in the developer.spotify website
 let accessToken = '';
 
 document.getElementById('log-in-button').addEventListener('click', authorizeSpotify);
 
 
 function authorizeSpotify() {
-    console.log("Access Token #2: " + accessToken); // Delete me
     const authEndpoint = 'https://accounts.spotify.com/authorize';
     const scope = 'playlist-modify-public';
-    window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=token&show_dialog=true`;
+    window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}&response_type=token&show_dialog=true`;
 }
 
 function getAccessToken() {
+
     if (window.location.hash) {
         const hash = window.location.hash.substring(1).split('&').reduce((acc, item) => {
             const parts = item.split('=');
@@ -20,11 +21,10 @@ function getAccessToken() {
             return acc;
         }, {});
         accessToken = hash.access_token;
-        console.log("Access Token: " + accessToken); // Delete me
-        sessionStorage.setItem('accessToken', accessToken);
         window.history.pushState('', document.title, window.location.pathname);
     }
 }
 
 // Get access token from URL on page load
 getAccessToken();
+
