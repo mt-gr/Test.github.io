@@ -9,6 +9,7 @@ document.getElementById('log-in-button').addEventListener('click', authorizeSpot
 function authorizeSpotify() {
     const authEndpoint = 'https://accounts.spotify.com/authorize';
     const scope = 'playlist-modify-public';
+    console.log("redirectUri: " + redirectUri);
     window.location = `${authEndpoint}?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}&response_type=token&show_dialog=true`;
 }
 
