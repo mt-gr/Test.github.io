@@ -1,0 +1,54 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    background-color: #60712F;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.container {
+    padding: 10px 10%;
+}
+
+#logo {
+    height: 300px;
+    display: block;
+    margin: auto;
+    margin-top: 10%;
+}
+
+#SignIn {
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 10%;
+    background-color: #315C2B;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #274029;
+    color: white;
+    width: 400px;
+    text-decoration: none;
+    padding: 16px 32px;
+    cursor: pointer;
+}
+
+/* Css for CreatePlaylist.Html */
+
+.container2 {
+    display: block;
+    color: white;
+    text-align: center;
+    
+}
+
+#song-input, #length-input {
+    background-color: #315C2B;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #274029;
+}

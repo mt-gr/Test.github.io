@@ -3,7 +3,7 @@ const redirectUri = 'https://carbonate1.github.io/Test.github.io/createplaylist'
 // const redirectUri = 'http://127.0.0.1:5500/Code/createplaylist.html' // TODO: Change me back both here and in the developer.spotify website
 let accessToken = '';
 
-document.getElementById('log-in-button').addEventListener('click', authorizeSpotify);
+document.getElementById('SignIn').addEventListener('click', authorizeSpotify);
 
 
 function authorizeSpotify() {
