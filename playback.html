@@ -4,20 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playback Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script defer src="playback.js"></script>
 </head>
 <body>
     <h1>Playback Controls</h1>
     
-    <button id="play-button">Play</button>
-    <button id="pause-button">Pause</button>
-    <button id="skip-button">Skip</button>
-    <button id="previous-button">Previous</button>
-    
+    <div id="inner">
+    <button id="play-button" class="submit-button">Play</button>
+    <button id="pause-button" class="submit-button">Pause</button>
+    <button id="skip-button" class="submit-button">Skip</button>
+    <button id="previous-button" class="submit-button">Previous</button>
+    </div>    
+
     <label for="volume-control">Volume:</label>
     <input type="range" id="volume-control" min="0" max="100" step="1">
     
-    <button id="back-button">Back to Create Playlist</button>
+    <button id="back-button" class="submit-button">Back to Create Playlist</button>
 </body>
 </html>
