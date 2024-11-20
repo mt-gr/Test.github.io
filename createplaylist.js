@@ -51,6 +51,12 @@ async function getTopSongs() {
         console.error('Error fetching top songs:', error);
         alert('An error occurred while fetching the top songs.');
     }
+
+    // Set the name the playlist
+    query = "Top 10 Playlist";
+    // Display the "Create Playlist" button
+    document.getElementById('create-playlist-button').style.display = 'block';
+    document.getElementById('create-playlist-button').trackUris= tracks.map(track => track.uri);
 }
 
 async function searchSongs() {
@@ -180,7 +186,7 @@ async function createPlaylist() {
 
         alert('Playlist created successfully!'); // Delete me?
 
-        // Display the "Playback Settings" button
+        // Display the "Playback Settings" button 
         document.getElementById('playback-settings-button').style.display = 'block';
     } catch (error) {
         console.error('Error creating playlist:', error);
