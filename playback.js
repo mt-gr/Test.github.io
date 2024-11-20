@@ -104,26 +104,13 @@ function setVolume(value) {
 
 // Function to extract the access token from the URL hash
 function getAccessTokenFromURL() {
-    // Check if the URL contains a hash fragment
-    if (window.location.hash) {
-        // Extract the hash and parse it into an object
-        const hash = window.location.hash.substring(1).split('&').reduce((acc, item) => {
-            const parts = item.split('=');
-            acc[parts[0]] = decodeURIComponent(parts[1]);
-            return acc;
-        }, {});
+    const query = window.location.search;  // Get the query string from the URL
+    const urlParams = new URLSearchParams(query);  // Parse the query string
 
-        // Get the access token from the parsed object
-        if (hash.access_token) {
-            accessToken = hash.access_token; // Set the global accessToken
-        } else {
-            console.error("No access token found in the URL."); // Delete me
-        }
-
-        // Clean up the URL to remove the hash
-        window.history.pushState('', document.title, window.location.pathname);
-    } else {
-        console.error("No hash found in the URL.");
+    accessToken = urlParams.get('access_token');  // Set the value of 'access_token'
+    
+    if (!accessToken) {
+        console.error("No access token found in the URL.");
     }
 }
 
