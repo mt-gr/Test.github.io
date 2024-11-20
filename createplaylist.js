@@ -3,9 +3,55 @@ document.getElementById('create-playlist-button').addEventListener('click', crea
 document.getElementById('playback-settings-button').addEventListener('click', () => {
     window.location.href = `playback.html?access_token=${accessToken}`;
 });
+document.getElementById('top-songs-button').addEventListener('click', getTopSongs);
+
 // Random change
 let accessToken = '';
 let query = '';
+
+async function getTopSongs() {
+    if (!accessToken) {
+        return alert('Access token is missing. Please log in.');
+    }
+
+    try {
+        // Fetch the featured playlist with top songs
+        const response = await fetch('https://api.spotify.com/v1/browse/featured-playlists?limit=1', {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        if (!response.ok) {
+            console.error('Failed to fetch top songs:', response.statusText);
+        }
+
+        const data = await response.json();
+        const topPlaylist = data.playlists.items[0]; // Assuming the first playlist is the top one
+
+        // Fetch the tracks from the top playlist
+        const tracksResponse = await fetch(topPlaylist.tracks.href, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
+        if (!tracksResponse.ok) {
+            console.error('Failed to fetch playlist tracks:', tracksResponse.statusText);
+        }
+
+        const tracksData = await tracksResponse.json();
+
+        // Display only the top 10 tracks
+        const topTracks = tracksData.items.slice(0, 10).map(item => item.track);
+        displayResults(topTracks);
+
+        console.log('Top 10 songs fetched successfully.');
+    } catch (error) {
+        console.error('Error fetching top songs:', error);
+        alert('An error occurred while fetching the top songs.');
+    }
+}
 
 async function searchSongs() {
 
@@ -97,7 +143,6 @@ async function createPlaylist() {
 
     try {
         // Get user's ID
-        console.log("About to get user ID. Access Token: " + accessToken) // Delete me
         const userResponse = await fetch('https://api.spotify.com/v1/me', {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
@@ -105,7 +150,6 @@ async function createPlaylist() {
         });
         const userData = await userResponse.json();
         const userId = userData.id;
-        console.log("User ID aquired: " + userId);
 
         // Create a new playlist
         const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
