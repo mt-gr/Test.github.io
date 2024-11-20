@@ -184,10 +184,7 @@ async function createPlaylist() {
             })
         });
 
-        alert('Playlist created successfully!'); // Delete me?
-
-        // Display the "Playback Settings" button 
-        document.getElementById('playback-settings-button').style.display = 'block';
+        alert('Playlist created successfully!');
     } catch (error) {
         console.error('Error creating playlist:', error);
     }
@@ -212,15 +209,11 @@ function filterUniqueTracks(tracks) {
         // Check if the track is a remix, remaster, edit, version, or cover using keywords
         const isRemixOrRemaster = /remix|re-recorded|remaster|edit|version|cover|feat|live|acoustic|instrumental/i.test(normalizedTrackName);
 
-        let i = 1; // Delete me
         // If it's not a remix/version and the track name hasn't been added yet, include it
         if (!isRemixOrRemaster && !trackNames.has(normalizedTrackName)) {
             trackNames.add(normalizedTrackName);
             uniqueTracks.push(track);
-        } else { // Delete me: 3 lines
-            console.log("Removed " + i + " songs");
-            i += 1;
-        }
+        } 
     });
 
     return uniqueTracks;
