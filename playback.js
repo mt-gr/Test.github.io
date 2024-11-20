@@ -111,6 +111,8 @@ function getAccessTokenFromURL() {
     
     if (!accessToken) {
         console.error("No access token found in the URL.");
+    } else {
+        console.log("Access Token recieved: " + access_token);
     }
 }
 
