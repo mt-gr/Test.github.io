@@ -1,5 +1,5 @@
 const clientId = 'efe131fac3c74d3cac20ae0886b01ff9';
-const redirectUri = 'https://mt-gr.github.io/Test.github.io/createplaylist';
+const redirectUri = 'https://mt-gr.github.io/Test.github.io/createplaylist.html';
 // Old link: https://carbonate1.github.io/Test.github.io/createplaylist
 // const redirectUri = 'http://127.0.0.1:5500/Code/createplaylist.html';
 let accessToken = '';
