@@ -1,8 +1,5 @@
 document.getElementById('search-button').addEventListener('click', searchSongs);
 document.getElementById('create-playlist-button').addEventListener('click', createPlaylist);
-document.getElementById('playback-settings-button').addEventListener('click', () => {
-    window.location.href = `playback.html?access_token=${accessToken}`;
-});
 document.getElementById('top-songs-button').addEventListener('click', getTopSongs);
 
 // Random change
