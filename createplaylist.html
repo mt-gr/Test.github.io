@@ -9,14 +9,23 @@
     <title>Spotify Callback</title>
 </head>
 <body>
-    <h1>Authorization successful.</h1>
-    <button id="top-songs-button">Get Today's Top 10 Songs</button>
+    <!-- <h2>Authorization successful.</h1> -->
     <br><br>
-    <input type="text" id="song-input" placeholder="Enter a song or artist">
-    <input type="text" id="length-input" placeholder="Enter playlist length">
-    <button id="search-button">Search</button>
+    <div class="container">
+        <i class="fas fa-music icon"></i>
+        <h1 class="color-header">Playlist Generator</h1>
+        
+        <p>Enter a song or artist and discover new music tailored to your tastes, or grab the top ten songs on Spotify right now!</p>
+        <input type="text" class="input-box" id="song-input" placeholder="Enter a song or artist">
+        <input type="text" class="input-box" id="length-input" placeholder="Enter playlist length">
+        <button id="search-button">Search</button>
+        <button id="top-songs-button">Get Today's Top 10 Songs</button>
+    </div>
     <div id="results"></div>
     <button id="create-playlist-button" style="display:none;">Create Playlist</button>
+    <div class="footer-text">
+        Powered by <a href="https://www.spotify.com" target="_blank">Spotify API</a>
+    </div>
     <script src="createplaylist.js"></script>
 </body>
 </html>
