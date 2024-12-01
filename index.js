@@ -1,6 +1,7 @@
 const clientId = 'efe131fac3c74d3cac20ae0886b01ff9';
+//Swap next two lines for github/local testing
+// const redirectUri = 'http://127.0.0.1:5500/createplaylist.html';
 const redirectUri = 'https://mt-gr.github.io/Test.github.io/createplaylist.html';
-// const redirectUri = 'https://mt-gr.github.io/Test.github.io/createplaylist.html';
 // Old link: https://carbonate1.github.io/Test.github.io/createplaylist
 // const redirectUri = 'http://127.0.0.1:5500/Code/createplaylist.html';
 let accessToken = '';
@@ -24,6 +25,7 @@ function getAccessToken() {
             return acc;
         }, {});
         accessToken = hash.access_token;
+
         window.history.pushState('', document.title, window.location.pathname);
     }
 }
