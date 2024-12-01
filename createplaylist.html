@@ -9,25 +9,36 @@
     <title>Spotify Callback</title>
 </head>
 <body>
-    <!-- <h2>Authorization successful.</h1> -->
-    <br><br>
+    <div id="results-box">
+        <h1>Results</h1>
+        <div id="results">
+            
+            
+        </div>
+        <div class="results-footer">
+            <button class="button" id="create-playlist-button" style="display:none;">Create playlist of these songs</button>
+            <div class="checkbox-container">
+                <label for="make-playlist-private-checkbox" id="label-for-make-playlist-private-checkbox" style="visibility:hidden">Make playlist private:</label>
+                <input type="checkbox" id="make-playlist-private-checkbox" name="make-playlist-private-checkbox" style="display:none">
+            </div>
+        </div>
+    </div>
+    
     <div class="container">
         <i class="fas fa-music icon"></i>
         <h1 class="color-header">Playlist Generator</h1>
         
         <p>Enter a song or artist and discover new music tailored to your tastes, or grab the top ten songs on Spotify right now!</p>
         <input type="text" class="input-box" id="song-input" placeholder="Enter a song or artist">
-        <input type="text" class="input-box" id="length-input" placeholder="Enter playlist length">
+        <p>Choose the number of songs to retrieve: 
+            <select class="number-box" id="length-input"></select>
+        </p>
+        
         <button class="button" id="search-button">Search</button>
-        <button class="button" id="top-songs-button">Get Today's Top 10 Songs</button>
         <label for="exclude-explicit-songs-checkbox">Exclude explicit songs</label>
         <input type ="checkbox" id="exclude-explicit-songs-checkbox" name="exclude-explicit-songs-checkbox">
     </div>
-    <div id="results"></div>
-    <button class="button" id="create-playlist-button" style="display:none;">Create Playlist</button>
-    <label for="make-playlist-private-checkbox" id="label-for-make-playlist-private-checkbox" style="visibility:hidden">Make playlist private</label>
-    <input type ="checkbox" id="make-playlist-private-checkbox" name="make-playlist-private-checkbox" style="display:none">
-    <div class="footer-text">
+        <div class="footer-text">
         Powered by <a href="https://www.spotify.com" target="_blank">Spotify API</a>
         and  <a href="https://GetSongBPM.com" target="_blank">GetSongbpm API</a>
     </div>
