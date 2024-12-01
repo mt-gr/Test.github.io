@@ -15,6 +15,9 @@ html {
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #851db9, #191414);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #fff;
     text-align: center;
 }
