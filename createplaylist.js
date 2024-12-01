@@ -5,6 +5,7 @@ document.getElementById('top-songs-button').addEventListener('click', getTopSong
 // Random change
 let accessToken = '';
 let query = '';
+const gsbKey = '6841f85f109ed5bb43076a588fb8d79d';
 
 async function getTopSongs() {
     if (!accessToken) {
@@ -126,7 +127,33 @@ function displayResults(tracks) {
 
         // Create a text element for song name and artist
         const trackInfo = document.createElement('p');
-        trackInfo.textContent = `${track.name} by ${track.artists[0].name}`;
+        
+        // Set attribute to allow for track info to contain line breaks
+        trackInfo.setAttribute('style', 'white-space: pre;');
+
+        // Refactor track names to feed to getsongbpm API
+        const trackNameWithoutFeatures = track.name.replace(/ *\([^)]*\) */g, "");
+        const gsbTrack = trackNameWithoutFeatures.replaceAll(" ", "+");
+        const gsbArtist = track.artists[0].name.replaceAll(" ", "+");
+
+        trackInfo.textContent = `${track.name} by ${track.artists[0].name}`
+
+        // Add indication of a song being explicit
+        if (track.explicit){
+            trackInfo.textContent += ` (Explicit)`
+        }
+
+        // Attempt to get song metadata and append
+        var metadata = gsbSearch(gsbTrack, gsbArtist)
+        .then(
+            (result) => {
+            trackInfo.textContent += `\r\n bpm: ${result.search[0].tempo}`
+            trackInfo.textContent += `\r\n key: ${result.search[0].key_of}`
+        })
+        .catch(
+            (error) => {
+            trackInfo.textContent += `\r\n Additional metadata unavailable`
+        })
 
         // Append the album cover and track info to the track element
         trackElement.appendChild(albumCover);
@@ -134,12 +161,15 @@ function displayResults(tracks) {
 
         // Append the track element to the results div
         resultsDiv.appendChild(trackElement);
-    });
+    })
 
     // display the "Create Playlist" button
     document.getElementById('create-playlist-button').style.display = 'block';
     document.getElementById('create-playlist-button').trackUris= tracks.map(track => track.uri);
-}
+
+    document.getElementById(`label-for-make-playlist-private-checkbox`).style.visibility = 'visible';
+    document.getElementById(`make-playlist-private-checkbox`).style.display = 'block';
+    }
 
 async function createPlaylist() {
     const trackUris = document.getElementById('create-playlist-button').trackUris;
@@ -153,6 +183,7 @@ async function createPlaylist() {
         });
         const userData = await userResponse.json();
         const userId = userData.id;
+        const isPrivate = document.getElementById(`make-playlist-private-checkbox`)
 
         // Create a new playlist
         const playlistResponse = await fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
@@ -164,7 +195,7 @@ async function createPlaylist() {
             body: JSON.stringify({
                 name: query + ' from Music Generator',
                 description: 'Playlist created from song search',
-                public: true
+                public: !(isPrivate.checked)
             })
         });
         const playlistData = await playlistResponse.json();
@@ -193,8 +224,11 @@ function filterUniqueTracks(tracks) {
     
     tracks.forEach((track, index) => {
 
-        // Always keep first result
-        if (index === 0) {
+        // Check if user is filtering explicit tracks
+        const filteringExplicitTracks = document.getElementById(`exclude-explicit-songs-checkbox`);
+
+        // Always keep first result unless filtering out explicit songs
+        if (index === 0 && (!(filteringExplicitTracks.checked && track.explicit))) {
             uniqueTracks.push(track);
             trackNames.add(track.name.toLowerCase());
             return;
@@ -207,7 +241,7 @@ function filterUniqueTracks(tracks) {
         const isRemixOrRemaster = /remix|re-recorded|remaster|edit|version|cover|feat|live|acoustic|instrumental/i.test(normalizedTrackName);
 
         // If it's not a remix/version and the track name hasn't been added yet, include it
-        if (!isRemixOrRemaster && !trackNames.has(normalizedTrackName)) {
+        if ((!isRemixOrRemaster && !trackNames.has(normalizedTrackName)) && !(filteringExplicitTracks.checked && track.explicit)) {
             trackNames.add(normalizedTrackName);
             uniqueTracks.push(track);
         } 
@@ -238,6 +272,20 @@ function getAccessTokenFromURL() {
         window.history.pushState('', document.title, window.location.pathname);
     } else {
         console.error("No hash found in the URL.");
+    }
+}
+
+async function gsbSearch(song, artist){
+    try{
+        const response = await fetch(`https://api.getsongbpm.com/search/?api_key=${gsbKey}&type=both&lookup=song:${song}artist:${artist}&limit=1`)
+        if (!response.ok){
+            throw new Error('metadata not found');
+        }
+        const data = response.json();
+        return data;
+    }
+    catch(error){
+        return error;
     }
 }
 
