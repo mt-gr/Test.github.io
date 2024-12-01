@@ -6,3 +6,13 @@ describe('Array', function () {
     });
   });
 });
+
+describe("Authentication Feature"), () => {
+
+  before
+
+  it("Should be able to login"), () => {
+    // test login in here
+    console.log('test1 - login')
+  }
+}
