@@ -20,11 +20,16 @@
         <input type="text" class="input-box" id="length-input" placeholder="Enter playlist length">
         <button class="button" id="search-button">Search</button>
         <button class="button" id="top-songs-button">Get Today's Top 10 Songs</button>
+        <label for="exclude-explicit-songs-checkbox">Exclude explicit songs</label>
+        <input type ="checkbox" id="exclude-explicit-songs-checkbox" name="exclude-explicit-songs-checkbox">
     </div>
     <div id="results"></div>
     <button class="button" id="create-playlist-button" style="display:none;">Create Playlist</button>
+    <label for="make-playlist-private-checkbox" id="label-for-make-playlist-private-checkbox" style="visibility:hidden">Make playlist private</label>
+    <input type ="checkbox" id="make-playlist-private-checkbox" name="make-playlist-private-checkbox" style="display:none">
     <div class="footer-text">
         Powered by <a href="https://www.spotify.com" target="_blank">Spotify API</a>
+        and  <a href="https://GetSongBPM.com" target="_blank">GetSongbpm API</a>
     </div>
     <script src="createplaylist.js"></script>
 </body>
